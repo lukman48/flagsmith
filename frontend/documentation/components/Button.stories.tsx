@@ -106,6 +106,48 @@ export const IconAsChildren: Story = {
   ),
 }
 
+export const IconAndLabel: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The most common icon usage in real code: `iconLeft` or `iconRight` paired with a text label. Dedicated snapshot so spacing regressions between the icon and the label are caught independently of the Themes story.',
+      },
+    },
+  },
+  render: () => (
+    <div className='d-flex align-items-center flex-wrap gap-2'>
+      <Button iconLeft='plus'>Add new</Button>
+      <Button iconRight='chevron-down'>Options</Button>
+      <Button iconLeft='copy' iconRight='chevron-down'>
+        Both icons
+      </Button>
+    </div>
+  ),
+}
+
+export const AsAnchor: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Button renders as an `<a>` element when `href` is set — a separate code path from the `<button>` branch with its own content wrapper. Snapshotted so changes to the anchor branch can't regress without showing up.",
+      },
+    },
+  },
+  render: () => (
+    <div className='d-flex align-items-center flex-wrap gap-2'>
+      <Button href='https://docs.flagsmith.com'>Docs</Button>
+      <Button href='https://docs.flagsmith.com' iconLeft='plus'>
+        Add new
+      </Button>
+      <Button href='https://docs.flagsmith.com' theme='secondary'>
+        Cancel
+      </Button>
+    </div>
+  ),
+}
+
 export const Sizes: Story = {
   parameters: {
     docs: {
