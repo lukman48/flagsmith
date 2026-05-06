@@ -106,23 +106,29 @@ export const Button = React.forwardRef<
         )}
         ref={ref as React.RefObject<HTMLButtonElement>}
       >
-        <span className='d-flex align-items-center justify-content-center gap-2'>
-          {!!iconLeft && (
-            <Icon
-              fill={iconLeftColour ? iconColours[iconLeftColour] : undefined}
-              name={iconLeft}
-              width={iconSize}
-            />
-          )}
-          {children}
-          {!!iconRight && (
-            <Icon
-              fill={iconRightColour ? iconColours[iconRightColour] : undefined}
-              name={iconRight}
-              width={iconSize}
-            />
-          )}
-        </span>
+        {iconLeft || iconRight ? (
+          <span className='d-flex align-items-center justify-content-center gap-2'>
+            {!!iconLeft && (
+              <Icon
+                fill={iconLeftColour ? iconColours[iconLeftColour] : undefined}
+                name={iconLeft}
+                width={iconSize}
+              />
+            )}
+            {children}
+            {!!iconRight && (
+              <Icon
+                fill={
+                  iconRightColour ? iconColours[iconRightColour] : undefined
+                }
+                name={iconRight}
+                width={iconSize}
+              />
+            )}
+          </span>
+        ) : (
+          children
+        )}
       </button>
     )
   },

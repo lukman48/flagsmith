@@ -7,6 +7,7 @@ import {
   sizeClassNames,
 } from 'components/base/forms/Button'
 import type { ButtonType } from 'components/base/forms/Button'
+import Icon from 'components/icons/Icon'
 
 const themeOptions = Object.keys(themeClassNames) as Array<
   keyof typeof themeClassNames
@@ -77,6 +78,30 @@ export const Variants: Story = {
         {''}
       </Button>
       <Button theme='project'>Project</Button>
+    </div>
+  ),
+}
+
+export const IconAsChildren: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pattern used by `btn-with-icon` consumers (e.g. table-row delete affordances): the icon is passed as `children`, not via the `iconLeft`/`iconRight` props. Layout must match the iconLeft/iconRight rendering for visual consistency. Snapshotted to catch wrapper-introduced height/width drift.',
+      },
+    },
+  },
+  render: () => (
+    <div className='d-flex align-items-center flex-wrap gap-2'>
+      <Button className='btn btn-with-icon' type='button'>
+        <Icon name='trash-2' width={20} fill='#656D7B' />
+      </Button>
+      <Button className='btn btn-with-icon' type='button'>
+        <Icon name='edit' width={20} fill='#656D7B' />
+      </Button>
+      <Button className='btn btn-with-icon' type='button'>
+        <Icon name='copy' width={20} fill='#656D7B' />
+      </Button>
     </div>
   ),
 }
