@@ -1057,7 +1057,7 @@ def test_list_projects__default_enforce_feature_owners__returns_false(
     assert response.json()[0]["enforce_feature_owners"] is False
 
 
-def test_list_projects__non_numeric_organisation_parameter__returns_empty_list(
+def test_list_projects__non_numeric_organisation_parameter__returns_400(
     admin_client: APIClient,
     project: Project,
 ) -> None:
@@ -1067,12 +1067,12 @@ def test_list_projects__non_numeric_organisation_parameter__returns_empty_list(
     # When
     response = admin_client.get(url)
 
-    # Then - should return 200 with empty list, not crash with 500
-    assert response.status_code == status.HTTP_200_OK
-    assert response.json() == []
+    # Then - should return 400 Bad Request with error message
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert "organisation" in response.json()
 
 
-def test_list_projects__non_numeric_organisation_parameter_with_valid_projects__returns_empty_list(
+def test_list_projects__non_numeric_organisation_parameter_with_valid_projects__returns_400(
     admin_client: APIClient,
     project: Project,
     organisation: Organisation,
@@ -1087,6 +1087,6 @@ def test_list_projects__non_numeric_organisation_parameter_with_valid_projects__
     # When
     response = admin_client.get(url)
 
-    # Then - should return 200 with empty list, not crash with 500
-    assert response.status_code == status.HTTP_200_OK
-    assert response.json() == []
+    # Then - should return 400 Bad Request with error message
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert "organisation" in response.json()
